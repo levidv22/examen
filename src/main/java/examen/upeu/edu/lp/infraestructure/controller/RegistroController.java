@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/registro")
-public class ReservacionController {
+public class RegistroController {
 
     private final RegistroService registroService;
 
-    public ReservacionController(RegistroService registroService) {
+    public RegistroController(RegistroService registroService) {
         this.registroService = registroService;
     }
 
