@@ -1,91 +1,37 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Crear Nueva Reserva</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/d8e40fe595.js" crossorigin="anonymous"></script>
-    <style>
-        .custom-card {
-            border-radius: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            background: linear-gradient(135deg, #cfd9df, #e2ebf0);
-            padding: 20px;
-        }
-        h1 {
-            color: #333;
-        }
-        .btn-primary {
-            background-color: #4A90E2;
-            border-color: #4A90E2;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <title>Registrar Estudiante</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
-<body class="p-4" style="background-color: #ECE6E6;">
+<body>
     <div class="container">
-        <h1 class="text-center mb-4">Crear Nueva Reserva</h1>
-        <div class="card custom-card mx-auto" style="max-width: 500px;">
-            <form th:action="@{/reservacion/create}" th:object="${reserva}" method="post" class="needs-validation" novalidate>
-                <div class="mb-3">
-                    <label for="usuario" class="form-label">Usuario</label>
-                    <input type="text" id="usuario" class="form-control" th:field="*{usuario}" required>
-                    <div class="invalid-feedback">Este campo es obligatorio.</div>
-                </div>
-                <div class="mb-3">
-                    <label for="fechaHora" class="form-label">Fecha y Hora</label>
-                    <input type="datetime-local" id="fechaHora" class="form-control" th:field="*{fechaHoraReserva}" required>
-                    <div class="invalid-feedback">Por favor seleccione fecha y hora.</div>
-                </div>
-                <div class="mb-3">
-                    <label for="tiempoUso" class="form-label">Tiempo de Uso (Horas)</label>
-                    <input type="number" id="tiempoUso" class="form-control" th:field="*{tiempoUso}" required>
-                    <div class="invalid-feedback">Debe ingresar el tiempo de uso en horas.</div>
-                </div>
-                <div class="mb-3">
-                    <label for="responsable" class="form-label">Responsable</label>
-                    <input type="text" id="responsable" class="form-control" th:field="*{responsable}" required>
-                    <div class="invalid-feedback">Por favor ingrese el responsable.</div>
-                </div>
-                <div class="mb-3">
-                    <label for="estado" class="form-label">Estado</label>
-                    <select id="estado" class="form-select" th:field="*{estado}" required>
-                        <option value="" disabled selected>Seleccione estado</option>
-                        <option th:value="PENDIENTE">Pendiente</option>
-                        <option th:value="CONFIRMADA">Confirmada</option>
-                        <option th:value="CANCELADA">Cancelada</option>
-                    </select>
-                    <div class="invalid-feedback">Seleccione un estado.</div>
-                </div>
-                <div class="mb-3">
-                    <label for="turno" class="form-label">Turno</label>
-                    <select id="turno" class="form-select" th:field="*{turno}" required>
-                        <option value="" disabled selected>Seleccione turno</option>
-                        <option th:value="DIA">Día</option>
-                        <option th:value="NOCHE">Noche</option>
-                    </select>
-                    <div class="invalid-feedback">Seleccione un turno.</div>
-                </div>
-                <div class="d-grid">
-                    <button type="submit" class="btn btn-primary"><i class="fa-regular fa-share-from-square"></i> Guardar</button>
-                </div>
-            </form>
-        </div>
+        <h2>Registrar Estudiante</h2>
+        <form th:action="@{/registro/create}" th:object="${registro}" method="post">
+            <div class="form-group">
+                <label for="nombreEstudiante">Nombre Estudiante:</label>
+                <input type="text" id="nombreEstudiante" th:field="*{nombreEstudiante}" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="correoUniversitario">Correo Universitario:</label>
+                <input type="email" id="correoUniversitario" th:field="*{correoUniversitario}" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="codigoUniversitario">Código Universitario:</label>
+                <input type="number" id="codigoUniversitario" th:field="*{codigoUniversitario}" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="FechaHora">Fecha y Hora:</label>
+                <input type="datetime-local" id="FechaHora" th:field="*{FechaHora}" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="Precio">Precio:</label>
+                <input type="number" step="0.01" id="Precio" th:field="*{Precio}" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Registrar</button>
+            <a href="/registro/show" class="btn btn-secondary">Cancelar</a>
+        </form>
     </div>
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        (function () {
-            'use strict'
-            const forms = document.querySelectorAll('.needs-validation')
-            Array.prototype.slice.call(forms).forEach(function (form) {
-                form.addEventListener('submit', function (event) {
-                    if (!form.checkValidity()) {
-                        event.preventDefault()
-                        event.stopPropagation()
-                    }
-                    form.classList.add('was-validated')
-                }, false)
-            })
-        })()
-    </script>
 </body>
 </html>
